@@ -2,9 +2,9 @@
 
 In this project, we try to predict the prices of houses in boston for dataset from kaggle.
 We have used boosting algorithms like gbm,xgboost and lgboost for this purpose. The public score 
-is 3.20499 and the private score is 3.62942. (Late submission)
+is 3.34561(Late submission)
 
-The Final Notebook is [here](https://github.com/abishekarun/Machine-Learing-Gladiator/blob/master/car_evaluation.md) for this project.
+The Final Notebook is [here](https://github.com/abishekarun/Boston-Housing/blob/master/boston_housing.ipynb) for this project.
 
 The resources that helped me are:
 
