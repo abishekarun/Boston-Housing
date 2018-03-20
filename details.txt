@@ -1,0 +1,28 @@
+params={'meta-gradientboostingregressor__n_estimators':[50,100,250,500,1000], 
+            'meta-gradientboostingregressor__learning_rate': [0.05,0.1,0.25,0.5], 
+            'meta-gradientboostingregressor__max_depth':[10,20,50,100], 
+            'meta-gradientboostingregressor__min_samples_leaf':[0.01,0.05,0.1,0.2,0.5], 
+            'meta-gradientboostingregressor__max_features':[0.01,0.05,0.1,0.2,0.5] } 
+# We're using GridSearch here to find the optimal alpha value
+# Get the ballpark
+Gboost = GradientBoostingRegressor()
+
+from mlxtend.regressor import StackingRegressor
+
+stregr = StackingRegressor(regressors=[lasso,Enet,lassoLarsIC,KRR], 
+                           meta_regressor=Gboost)
+stregr = GridSearchCV(estimator=stregr,param_grid=params,cv=10, scoring='neg_mean_squared_error',refit=True)
+stregr.fit(X_train, Y_train)
+ypred=stregr.predict(X_validation)
+mse=mean_squared_error(Y_validation,ypred)
+print('Stacked Regressor -> Train RSME: {:.5f} | Avg. Validation RMSE: {:.5f} | Validation RSME: {:.5f} '.format(
+    rsme(stregr, X_train, Y_train).mean(),rsme(stregr,X_validation , Y_validation).mean(),mse))
+
+#model_rf.fit(x,y)
+#ypred=model_rf.predict(test)
+#d = {'ID': test_id,
+     'medv': ypred}
+#df = pd.DataFrame(d)
+#df.to_csv('submission2.csv', sep=',', index=False)
+
+Do binning for black variable

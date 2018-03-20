@@ -1,0 +1,9 @@
+1) Effect of chas splitting => positive 
+2) Effect of keeping
+nox,indus,rad variable => positive 
+3) Effect of not splitting chas variable
+negative
+4) ensemble=(ypred1+ypred2+ypred3)/3
+3.16
+5) ensemble=(0.5*ypred1+0.3*ypred2+0.2*ypred3)
+3.20
